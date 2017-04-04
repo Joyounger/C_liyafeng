@@ -1,3 +1,8 @@
+// date:17.4.4
+// author: linyang <942510346@qq.com>
+// 510 select()函数用法
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -31,7 +36,8 @@ int main(int argc, char **argv)
     servaddr.sin_family = AF_INET;
     servaddr.sin_addr.s_addr = htonl(INADDR_ANY);
     servaddr.sin_port = htons(SERV_PORT);
-    bind(svrfd, MAX_CONNECT);
+    bind(svrfd, (struct sockaddr *)&servaddr, sizeof(servaddr));
+    listen(svrfd, MAX_CONNECT);
     maxfd = svrfd;
     max = -1;
     for (i = 0; i < MAX_CONNECT; i++)
@@ -52,9 +58,9 @@ int main(int argc, char **argv)
         if (FD_ISSET(svrfd, &rset))
         {
             cliaddr_len = sizeof(cliaddr);
-            connfd = accept(svrfd, (struct sockaddr *)&cliaddr, ddr_len);
-            printf("received from %s at PORT %d\n", iner_ntop(AF_INET, 
-                ddr.sin_addr, ipstr, sizeof(ipstr)),
+            connfd = accept(svrfd, (struct sockaddr *)&cliaddr, cliaddr_len);
+            printf("received from %s at PORT %d\n", inet_ntop(AF_INET, 
+                (void *)&cliaddr.sin_addr, ipstr, sizeof(ipstr)),
                 ntohs(cliaddr.sin_port));
             for (i = 0; i < MAX_CONNECT; i++)
             {
@@ -90,7 +96,7 @@ int main(int argc, char **argv)
             {
                 continue;
             }
-            if (FD_ISSET(sockfd, &tset))
+            if (FD_ISSET(sockfd, &rset))
             {
                 if ((n = read(sockfd, buf, MAXLINE)) > 0)
                 {

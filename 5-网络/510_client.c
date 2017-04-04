@@ -1,3 +1,7 @@
+// date:17.4.4
+// author: linyang <942510346@qq.com>
+// 510 select()函数用法
+
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
@@ -17,7 +21,7 @@ int main(int argc, char* argv[])
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
     bzero(&servaddr, sizeof(servaddr));
     servaddr.sin_family = AF_INET;
-    inet_pton(AFINET, "192.168.220.128", &servaddr.sin_addr);
+    inet_pton(AF_INET, "192.168.220.128", &servaddr.sin_addr);
     servaddr.sin_port = htons(SERV_PORT);
     connect(sockfd, (struct sockaddr *)&servaddr, sizeof(servaddr));
     

@@ -1,11 +1,15 @@
+// date:17.4.4
+// author: linyang <linyang@xiaomi.com>
+// 508 实现http get
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-//#include <sys/socket.h>
+#include <sys/socket.h>
 #include <unistd.h>
-//#include <arpa/inet.h>
-//#include <netinet/ip.h>
-//#include <netdb.h>
+#include <arpa/inet.h>
+#include <netinet/ip.h>
+#include <netdb.h>
 
 #define HTTP_GET "GET / HTTP/1.1\r\nHost: %s\r\nAccept: */*\r\n\r\n"
 
@@ -35,7 +39,7 @@ int main(int argc, char** argv)
     dest_addr.sin_port = htons(80);
     if (inet_addr(dest) == INADDR_NONE) 
     {
-        if ((host = gethostbyname(dest)) == NULL))
+        if ((host = gethostbyname(dest)) == NULL)
         {
             perror("gethostbyname error");
             exit(1);
@@ -65,3 +69,24 @@ int main(int argc, char** argv)
 }
 
 
+
+
+/*
+kolya@asus ~/src/C_liyafeng/5-网络 $ ./508 www.baidu.com
+n = 750, buf = HTTP/1.1 200 OK
+Date: Tue, 04 Apr 2017 08:40:34 GMT
+Content-Type: text/html
+Content-Length: 14613
+Last-Modified: Tue, 14 Mar 2017 07:30:00 GMT
+Connection: Keep-Alive
+Vary: Accept-Encoding
+Set-Cookie: BAIDUID=E58A5443A22443C780530C0398BF481B:FG=1; expires=Thu, 31-Dec-37 23:55:55 GMT; max-age=2147483647; path=/; domain=.baidu.com
+Set-Cookie: BIDUPSID=E58A5443A22443C780530C0398BF481B; expires=Thu, 31-Dec-37 23:55:55 GMT; max-age=2147483647; path=/; domain=.baidu.com
+Set-Cookie: PSTM=1491295234; expires=Thu, 31-Dec-37 23:55:55 GMT; max-age=2147483647; path=/; domain=.baidu.com
+P3P: CP=" OTI DSP COR IVA OUR IND COM "
+Server: BWS/1.1
+X-UA-Compatible: IE=Edge,chrome=1
+Pragma: no-cache
+Cache-control: no-cache
+Accept-Ranges: bytes
+*/
