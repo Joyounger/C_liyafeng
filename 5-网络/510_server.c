@@ -55,10 +55,10 @@ int main(int argc, char **argv)
         {
             perror("select error");
         }
-        if (FD_ISSET(svrfd, &rset))
+        if (FD_ISSET(svrfd, &rset)) // new client connection
         {
             cliaddr_len = sizeof(cliaddr);
-            connfd = accept(svrfd, (struct sockaddr *)&cliaddr, cliaddr_len);
+            connfd = accept(svrfd, (struct sockaddr *)&cliaddr, &cliaddr_len);
             printf("received from %s at PORT %d\n", inet_ntop(AF_INET, 
                 (void *)&cliaddr.sin_addr, ipstr, sizeof(ipstr)),
                 ntohs(cliaddr.sin_port));
@@ -66,7 +66,7 @@ int main(int argc, char **argv)
             {
                 if (client[i] < 0)
                 {
-                    client[i] = connfd;
+                    client[i] = connfd; // save descriptor
                     break;
                 }
             }
@@ -75,7 +75,7 @@ int main(int argc, char **argv)
                 perror("too many clients");
                 return -1;
             }
-            FD_SET(connfd, &allset);
+            FD_SET(connfd, &allset); // add new descriptor to all set
 
             if (connfd > maxfd)
             {
@@ -90,7 +90,7 @@ int main(int argc, char **argv)
                 continue;
             }
         }
-        for (i = 0; i <= max; i++)
+        for (i = 0; i <= max; i++) // check all clients for RX/TX data
         {
             if ((sockfd = client[i]) < 0)
             {
