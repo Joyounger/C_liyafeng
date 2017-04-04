@@ -1,4 +1,9 @@
+// date:17.4.5
+// author: linyang <942510346@qq.com>
+// 文件操作
+
 #include <stdio.h>
+#include <string.h>
 
 #define MAX_LINE_LEN 80
 #define FILE_NAME "test.in"
@@ -7,8 +12,8 @@ int main()
 {
 	char buf[MAX_LINE_LEN];
 	FILE *fp;
-	char *searchStr = "Lady Gaga";
-	int lineId = 0;
+	char *searchStr = "Lady GaGa";
+	int lineID = 0;
 	
 	fp = fopen(FILE_NAME, "r");
 	if(fp == NULL)
@@ -33,3 +38,8 @@ int main()
 	}
 	return 0;
 }
+
+
+/*
+Line 3: [05] 07| Lady GaGa, Alejandro
+*/

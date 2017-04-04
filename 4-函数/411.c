@@ -1,3 +1,7 @@
+// date:17.4.5
+// author: linyang <942510346@qq.com>
+// hexdump函数
+
 /* 
 hexdump函数模仿Linux下的hexdump命令，主要实现以下功能：
 1 打印内存地址

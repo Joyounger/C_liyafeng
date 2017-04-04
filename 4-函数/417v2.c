@@ -1,3 +1,8 @@
+// date:17.4.5
+// author: linyang <942510346@qq.com>
+// all combinations of a word
+
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -81,3 +86,26 @@ int main()
     
     return 0;
 }
+
+
+/*
+kolya@asus ~/src/C_liyafeng/4-函数 $ ./417v2
+please input a word:
+apple
+
+word "apple" permutations:
+     aelpp      aeplp      aeppl      alepp      alpep 
+     alppe      apelp      apepl      aplep      aplpe 
+     appel      apple      ealpp      eaplp      eappl 
+     elapp      elpap      elppa      epalp      epapl 
+     eplap      eplpa      eppal      eppla      laepp 
+     lapep      lappe      leapp      lepap      leppa 
+     lpaep      lpape      lpeap      lpepa      lppae 
+     lppea      paelp      paepl      palep      palpe 
+     papel      paple      pealp      peapl      pelap 
+     pelpa      pepal      pepla      plaep      plape 
+     pleap      plepa      plpae      plpea      ppael 
+     ppale      ppeal      ppela      pplae      pplea 
+
+word "apple" has 60 different permutations.
+*/
