@@ -24,3 +24,10 @@ int main()
 	
 	return 0;	
 }
+
+
+
+/*
+kolya@asus ~/src/C_liyafeng/1-指针 $ ./118
+24 28 24
+*/

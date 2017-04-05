@@ -1,7 +1,14 @@
+// date:17.4.5
+// author: linyang <942510346@qq.com>
+
+#include <stdio.h>
+#include <assert.h>
+
 void calcCharCount(char *s)
 {
     int i = 0, j = 0, max = 0;
     int count[26] = { 0 };
+    int flag = 0;
     int flag2 = 0;
     assert(s);
     for ( i = 0; s[i] != '\0'; i++)
@@ -34,3 +41,19 @@ void calcCharCount(char *s)
         printf("No matched!\n");
     }
 }
+
+
+int main(int argc, char const *argv[])
+{
+    char *s = "mike.lee@ChinaBejing";
+    calcCharCount(s);
+
+    return 0;
+}
+
+/*
+aghjklm: 1
+n: 2
+i: 3
+e: 4
+*/
